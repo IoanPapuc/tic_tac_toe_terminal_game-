@@ -6,3 +6,14 @@ column) where they want their specific character to be inserted.
 The game ends when one of them first satisfies one of the three
 winning conditions.
 """
+
+board = []
+for n in range(2):
+    board.append(["_"] * 3)
+board.append([" "] * 3)
+
+# print(board)
+
+def print_board(board):
+    for row in board:
+        print(" | ".join(row))
