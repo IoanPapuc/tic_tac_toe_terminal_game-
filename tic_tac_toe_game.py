@@ -32,3 +32,27 @@ def insert_symbol(board, symbol):
         col = int(input("Enter column: "))
     board[row-1][col-1] = symbol.upper()
     print_board(board)
+
+
+def full_row(board, symbol):    
+    for i in range(3):
+        if board[i] == [symbol] * 3:
+            return True
+    return False
+        
+def full_column(board, symbol):        
+    for j in range(3):
+        if [board[0][j], board[1][j], board[2][j]] == [symbol] * 3:
+            return True
+    return False
+        
+def full_diag(board, symbol):
+    if [board[0][0], board[1][1], board[2][2]] == [symbol] * 3 \
+        or [board[0][2], board[1][1], board[2][0]] == [symbol] * 3:
+        return True
+    return False
+
+def winning_verification(board, symbol):
+    if full_row(board, symbol) or full_column(board, symbol) or full_diag(board, symbol):
+        return True
+    return False
