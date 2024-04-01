@@ -22,12 +22,8 @@ def insert_symbol(board, symbol):
     print("Time for {S}:".format(S = symbol))
     row = int(input("Enter row: "))
     col = int(input("Enter column: "))
-    while row not in range(1,4) or col not in range(0,4):
-        print("You missed the board! Enter a valid location for {S}:".format(S = symbol))
-        row = int(input("Enter row: "))
-        col = int(input("Enter column: "))
-    while board[row-1][col-1] == "X" or board[row-1][col-1] == "O":
-        print("Choose an empty box for {S}:".format(S = symbol))
+    while row not in range(1,4) or col not in range(1,4) or board[row-1][col-1] == "X" or board[row-1][col-1] == "O":
+        print("Be careful! Enter a valid location for {S}:".format(S = symbol))
         row = int(input("Enter row: "))
         col = int(input("Enter column: "))
     board[row-1][col-1] = symbol.upper()
@@ -56,3 +52,32 @@ def winning_verification(board, symbol):
     if full_row(board, symbol) or full_column(board, symbol) or full_diag(board, symbol):
         return True
     return False
+
+
+def play_game():
+    print("Welcome to Tic Tac Toe terminal game.")
+    print("Please insert the row and column (1, 2 or 3) for the locations of the symbols X or O.")
+    print("The game starts with X.")
+    print_board(board)
+    counter = 0
+    while True:
+        insert_symbol(board,"X")
+        counter += 1
+        if winning_verification(board, "X"):
+            print("Game Over! X is the winner!")
+            break
+        elif counter == 9:
+            print("Game Over! We have a draw!")
+            break       
+        
+        insert_symbol(board,"O")
+        counter += 1
+        if winning_verification(board, "O"):
+            print("Game Over! O is the winner!")
+            break
+        elif counter == 9:
+            print("Game Over! We have a draw!")
+            break
+
+
+play_game()  
