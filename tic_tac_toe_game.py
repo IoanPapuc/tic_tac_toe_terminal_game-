@@ -1,16 +1,8 @@
-"""
-In this file it is created a terminal version of the Tic Tac Toe 
-game (X and O) which can be played by two users. The players are 
-asked successivelly in the terminal to input the location (row and
-column) where they want their specific character to be inserted.
-The game ends when one of them first satisfies one of the three
-winning conditions.
-"""
 
-board = []
+empty_board = []
 for n in range(2):
-    board.append(["_"] * 3)
-board.append([" "] * 3)
+    empty_board.append(["_"] * 3)
+empty_board.append([" "] * 3)
 
 
 def print_board(board):
@@ -55,10 +47,13 @@ def winning_verification(board, symbol):
 
 
 def play_game():
-    print("Welcome to Tic Tac Toe terminal game.")
-    print("Please insert the row and column (1, 2 or 3) for the locations of the symbols X or O.")
-    print("The game starts with X.")
+    
+    board = []
+    for n in range(2):
+        board.append(["_"] * 3)
+    board.append([" "] * 3)
     print_board(board)
+
     counter = 0
     while True:
         insert_symbol(board,"X")
@@ -80,4 +75,22 @@ def play_game():
             break
 
 
-play_game()  
+
+def game_menu():
+    print("Welcome to Tic Tac Toe terminal game!")
+    print("Insert the row and column (1, 2 or 3) for X or O.")
+    print("The game starts with X.")
+
+    while True:
+        print("Menu: [S] Start Game   [E] Exit") 
+        option = input("Insert an option: ")
+
+        if option.upper() == "S":
+            play_game()    
+        elif option.upper() == "E":
+            exit()
+        else:
+            continue
+
+
+game_menu()
