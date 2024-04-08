@@ -12,14 +12,23 @@ def print_board(board):
 
 def insert_symbol(board, symbol):
     print("Time for {S}:".format(S = symbol))
-    row = int(input("Enter row: "))
-    col = int(input("Enter column: "))
-    while row not in range(1,4) or col not in range(1,4) or board[row-1][col-1] == "X" or board[row-1][col-1] == "O":
-        print("Be careful! Enter a valid location for {S}:".format(S = symbol))
-        row = int(input("Enter row: "))
-        col = int(input("Enter column: "))
-    board[row-1][col-1] = symbol.upper()
-    print_board(board)
+    while True:
+        row = input("Enter row: ")
+        col = input("Enter column: ")
+        
+        try:
+            row_int = int(row)
+            col_int = int(col)
+            if row_int not in range(1,4) or col_int not in range(1,4):
+                print("Outside of board! Enter a valid location.")
+            elif board[row_int-1][col_int-1] == "X" or board[row_int-1][col_int-1] == "O":
+                print("Choose an empty box!")
+            else:
+                board[row_int-1][col_int-1] = symbol.upper()
+                print_board(board)
+                break
+        except ValueError:
+            print("Enter a valid location (1, 2 or 3 for row/ column).")
 
 
 def full_row(board, symbol):    
