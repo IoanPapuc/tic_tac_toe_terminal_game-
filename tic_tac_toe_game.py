@@ -4,6 +4,7 @@ for n in range(2):
     empty_board.append(["_"] * 3)
 empty_board.append([" "] * 3)
 
+quit_game = False
 
 def print_board(board):
     for row in board:
@@ -28,8 +29,12 @@ def insert_symbol(board, symbol):
                 print_board(board)
                 break
         except ValueError:
-            print("Enter a valid location (1, 2 or 3 for row/ column).")
-
+            if row.upper() == "Q" or col.upper() == "Q":
+                global quit_game
+                quit_game = True 
+                break
+            else:
+                print("If you want to quit game enter 'Q'. Otherwise, enter a valid location (1, 2 or 3 for row/ column).")
 
 def full_row(board, symbol):    
     for i in range(3):
@@ -63,6 +68,9 @@ def play_game():
     board.append([" "] * 3)
     print_board(board)
 
+    global quit_game
+    quit_game = False
+
     counter = 0
     while True:
         insert_symbol(board,"X")
@@ -72,7 +80,9 @@ def play_game():
             break
         elif counter == 9:
             print("Game Over! We have a draw!")
-            break       
+            break 
+        elif quit_game == True:
+            break      
         
         insert_symbol(board,"O")
         counter += 1
@@ -82,16 +92,18 @@ def play_game():
         elif counter == 9:
             print("Game Over! We have a draw!")
             break
+        elif quit_game == True:
+            break
 
 
 
 def game_menu():
-    print("Welcome to Tic Tac Toe terminal game!")
+    print("     Welcome to Tic Tac Toe terminal game!")
     print("Insert the row and column (1, 2 or 3) for X or O.")
     print("The game starts with X.")
 
     while True:
-        print("Menu: [S] Start Game   [E] Exit") 
+        print("Menu: [S] Start Game   [E] Exit   [Q] Quit Game / Return to Menu") 
         option = input("Insert an option: ")
 
         if option.upper() == "S":
