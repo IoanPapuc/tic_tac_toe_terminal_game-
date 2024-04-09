@@ -98,11 +98,13 @@ def play_game():
 
 
 def game_menu():
+    print("-------------------------------------------------")
     print("     Welcome to Tic Tac Toe terminal game!")
     print("Insert the row and column (1, 2 or 3) for X or O.")
     print("The game starts with X.")
 
     while True:
+        print("-----------------------------------------------------------------")
         print("Menu: [S] Start Game   [E] Exit   [Q] Quit Game / Return to Menu") 
         option = input("Insert an option: ")
 
