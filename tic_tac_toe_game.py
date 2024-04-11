@@ -1,8 +1,11 @@
 
-empty_board = []
-for n in range(2):
-    empty_board.append(["_"] * 3)
-empty_board.append([" "] * 3)
+
+def new_board():
+    empty_board = []
+    for n in range(2):
+        empty_board.append(["_"] * 3)
+    empty_board.append([" "] * 3)
+    return empty_board
 
 quit_game = False
 
@@ -62,10 +65,7 @@ def winning_verification(board, symbol):
 
 def play_game():
     
-    board = []
-    for n in range(2):
-        board.append(["_"] * 3)
-    board.append([" "] * 3)
+    board = new_board()
     print_board(board)
 
     global quit_game
